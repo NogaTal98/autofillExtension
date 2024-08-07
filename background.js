@@ -1,19 +1,12 @@
-
-
 // When the user clicks on the extension action
 chrome.action.onClicked.addListener(async (tab) => {
   // add a text to the page
   chrome.scripting.executeScript({
     target: {tabId: tab.id},
-    function: () => {
-      let data = {
-        "name": "Noga Tal",
-        "mail": "isanyo.noga@gmail.com",
-        "phone": "0526605398",
-        "linkdin": "https://www.linkedin.com/in/noga-tal-8b6b5b1b4/",
-        "github": "https://github.com/NogaTal98",
-        "portfolio": "https://noga-portfolio.web.app/"
-      };
+    function: async () => {
+      let data = await fetch(chrome.runtime.getURL('/data.json'))
+      .then((resp) => resp.json());
+      console.log(data);
 
       const inputs = document.querySelectorAll('input');
       inputs.forEach(input => {

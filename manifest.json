@@ -28,5 +28,12 @@
           "mac": "Command+B"
         }
       }
+    },
+    "web_accessible_resources": [
+    {
+      "resources": [ "data.json" ],
+      "matches": ["<all_urls>"],
+      "extension_ids": []
     }
+  ]
   }
