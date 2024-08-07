@@ -1,2 +1,2 @@
 # autofillExtension
-Chrom Extension to autofill Extension job aplications
+Chrome Extension to autofill Extension job aplications
