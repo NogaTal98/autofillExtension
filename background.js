@@ -4,7 +4,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   chrome.scripting.executeScript({
     target: {tabId: tab.id},
     function: async () => {
-      let data = await fetch(chrome.runtime.getURL('/data.json'))
+      let data = await fetch(chrome.runtime.getURL('/data/data.json'))
       .then((resp) => resp.json());
       console.log(data);
 
