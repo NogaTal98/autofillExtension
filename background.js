@@ -21,34 +21,45 @@ chrome.action.onClicked.addListener(async (tab) => {
         return regex.test(input.name) || regex.test(input.id) || regex.test(input.placeholder) || regex.test(input.ariaLabel);
       };
 
+      const setValue = (input, value) => {
+        input.value = value;
+        const event = new Event("change", { bubbles: !0, });
+        input.dispatchEvent(event);
+      }
+
       const inputs = document.querySelectorAll('input');
       
       inputs.forEach(input => {
-        if (checkFields(input, /name/i)) {
-          if (checkFields(input, /first/i)) {
-            input.value = data.name.split(' ')[0];
-          } else if (checkFields(input, /last/i)) {
-            input.value = data.name.split(' ')[1];
-          } else {input.value = data.name;}
-        } else if (checkFields(input, /mail/i)) {
-          input.value = data.mail;
-        } else if (checkFields(input, /phone/i)) {
-          input.value = data.phone;
-        } else if (checkFields(input, /linkedin/i)) {
-          input.value = data.linkdin;
-        } else if (checkFields(input, /github/i)) {
-          input.value = data.github;
-        } else if (checkFields(input, /portfolio|Website/i)) {
-          input.value = data.portfolio;
-        } else if (/file/i.test(input.type)) {
+        if (/file/i.test(input.type) && checkFields(input, /cv|resume/i)) {
           const dt = new DataTransfer();
           dt.items.add(cv);
           input.files = dt.files;
+          const event = new Event("change", { bubbles: !0, });
+          input.dispatchEvent(event);
         }
-
-        const event = new Event("change", { bubbles: !0, });
-        input.dispatchEvent(event);
       });
+
+      setTimeout(() => {
+        inputs.forEach(input => {
+          if (checkFields(input, /name/i)) {
+            if (checkFields(input, /first/i)) {
+              setValue(input, data.name.split(' ')[0]);
+            } else if (checkFields(input, /last/i)) {
+              setValue(input, data.name.split(' ')[1]);
+            } else {input.value = data.name;}
+          } else if (checkFields(input, /mail/i)) {
+            setValue(input, data.email);
+          } else if (checkFields(input, /phone/i)) {
+            setValue(input, data.phone);
+          } else if (checkFields(input, /linkedin/i)) {
+            setValue(input, data.linkedin);
+          } else if (checkFields(input, /github/i)) {
+            setValue(input, data.github);
+          } else if (checkFields(input, /portfolio|Website/i)) {
+            setValue(input, data.portfolio);
+          }
+        });
+      }, 1000);
     }
   });
 });
