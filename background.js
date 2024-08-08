@@ -6,7 +6,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     function: async () => {
       let data = await fetch(chrome.runtime.getURL('/data/data.json'))
       .then((resp) => resp.json());
-      console.log(data);
+      //console.log(data);
 
       let cv = await fetch(chrome.runtime.getURL('/data/CV.pdf'))
       .then((resp) => {
@@ -17,35 +17,37 @@ chrome.action.onClicked.addListener(async (tab) => {
         return new File([b], "CV.pdf", metadata);
       });
 
+      const checkFields = (input, regex) => {
+        return regex.test(input.name) || regex.test(input.id) || regex.test(input.placeholder) || regex.test(input.ariaLabel);
+      };
+
       const inputs = document.querySelectorAll('input');
+      
       inputs.forEach(input => {
-        if (/name/i.test(input.name)) {
-          if (/first/i.test(input.name)) {
+        if (checkFields(input, /name/i)) {
+          if (checkFields(input, /first/i)) {
             input.value = data.name.split(' ')[0];
-          } else if (/last/i.test(input.name)) {
+          } else if (checkFields(input, /last/i)) {
             input.value = data.name.split(' ')[1];
-          }
-          else {input.value = data.name;}
-        } else if (/email/i.test(input.name)) {
+          } else {input.value = data.name;}
+        } else if (checkFields(input, /mail/i)) {
           input.value = data.mail;
-        } else if (/phone/i.test(input.name)) {
+        } else if (checkFields(input, /phone/i)) {
           input.value = data.phone;
-        } else if (/linkedin/i.test(input.name) || /linked/i.test(input.placeholder)) {
+        } else if (checkFields(input, /linkedin/i)) {
           input.value = data.linkdin;
-        } else if (/github/i.test(input.name)) {
+        } else if (checkFields(input, /github/i)) {
           input.value = data.github;
-        } else if (/portfolio/i.test(input.name)) {
+        } else if (checkFields(input, /portfolio|Website/i)) {
           input.value = data.portfolio;
         } else if (/file/i.test(input.type)) {
           const dt = new DataTransfer();
           dt.items.add(cv);
           input.files = dt.files;
-
-          const event = new Event("change", {
-            bubbles: !0,
-          });
-          input.dispatchEvent(event);
         }
+
+        const event = new Event("change", { bubbles: !0, });
+        input.dispatchEvent(event);
       });
     }
   });
