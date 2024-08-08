@@ -18,7 +18,7 @@ chrome.action.onClicked.addListener(async (tab) => {
       });
 
       const checkFields = (input, regex) => {
-        return regex.test(input.name) || regex.test(input.id) || regex.test(input.placeholder) || regex.test(input.ariaLabel);
+        return regex.test(input.name) || regex.test(input.id) || regex.test(input.placeholder) || regex.test(input.ariaLabel) || regex.test(input.class);
       };
 
       const setValue = (input, value) => {
@@ -30,7 +30,7 @@ chrome.action.onClicked.addListener(async (tab) => {
       const inputs = document.querySelectorAll('input');
       
       inputs.forEach(input => {
-        if (/file/i.test(input.type) && checkFields(input, /cv|resume/i)) {
+        if (/file/i.test(input.type) && checkFields(input, /cv|resume|file/i)) {
           const dt = new DataTransfer();
           dt.items.add(cv);
           input.files = dt.files;
@@ -46,10 +46,10 @@ chrome.action.onClicked.addListener(async (tab) => {
               setValue(input, data.name.split(' ')[0]);
             } else if (checkFields(input, /last/i)) {
               setValue(input, data.name.split(' ')[1]);
-            } else {input.value = data.name;}
+            } else {setValue(input, data.name);}
           } else if (checkFields(input, /mail/i)) {
             setValue(input, data.mail);
-          } else if (checkFields(input, /phone/i)) {
+          } else if (checkFields(input, /phone|tel/i)) {
             setValue(input, data.phone);
           } else if (checkFields(input, /linkedin/i)) {
             setValue(input, data.linkedin);
@@ -57,6 +57,10 @@ chrome.action.onClicked.addListener(async (tab) => {
             setValue(input, data.github);
           } else if (checkFields(input, /portfolio|Website/i)) {
             setValue(input, data.portfolio);
+          } else if (checkFields(input, /address|city/i)) {
+            setValue(input, data.address);
+          } else if (checkFields(input, /desired|pay/i)) {
+            setValue(input, data.desiredPay);
           }
         });
       }, 1000);
