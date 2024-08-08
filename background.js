@@ -48,7 +48,7 @@ chrome.action.onClicked.addListener(async (tab) => {
               setValue(input, data.name.split(' ')[1]);
             } else {input.value = data.name;}
           } else if (checkFields(input, /mail/i)) {
-            setValue(input, data.email);
+            setValue(input, data.mail);
           } else if (checkFields(input, /phone/i)) {
             setValue(input, data.phone);
           } else if (checkFields(input, /linkedin/i)) {
