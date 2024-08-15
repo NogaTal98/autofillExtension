@@ -11,3 +11,8 @@ Chrome Extension to autofill job aplications
 2. Enable Developer Mode by clicking the toggle switch next to **Developer mode**.
 3. Click the **Load unpacked** button and select the extension directory.
 4. (optional) Pin your extension to the toolbar to quickly access your extension during development.
+
+## Use the extention
+Go to some apliction form and click the extention icon ![icon-16](https://github.com/user-attachments/assets/d9c722f4-ef1d-4643-92a6-9c0060c00a28)
+
+
