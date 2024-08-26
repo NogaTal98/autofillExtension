@@ -1,5 +1,10 @@
+const btn = document.getElementById('button');
+
 // When the user clicks on the extension action
-chrome.action.onClicked.addListener(async (tab) => {
+btn.addEventListener('click', async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  // add a text to the page
+  async function addText(tab) {
   // add a text to the page
   chrome.scripting.executeScript({
     target: {tabId: tab.id},
@@ -66,4 +71,6 @@ chrome.action.onClicked.addListener(async (tab) => {
       }, 1000);
     }
   });
+}
+  addText(tab);
 });
