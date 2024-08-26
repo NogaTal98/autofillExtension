@@ -1,7 +1,7 @@
-const btn = document.getElementById('button');
+const autofill = document.getElementById('autofill');
 
 // When the user clicks on the extension action
-btn.addEventListener('click', async () => {
+autofill.addEventListener('click', async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
   // add a text to the page
   async function addText(tab) {
@@ -9,10 +9,6 @@ btn.addEventListener('click', async () => {
   chrome.scripting.executeScript({
     target: {tabId: tab.id},
     function: async () => {
-      let data = await fetch(chrome.runtime.getURL('/data/data.json'))
-      .then((resp) => resp.json());
-      //console.log(data);
-
       let cv = await fetch(chrome.runtime.getURL('/data/CV.pdf'))
       .then((resp) => {
         let b = resp.blob();
@@ -46,26 +42,50 @@ btn.addEventListener('click', async () => {
 
       setTimeout(() => {
         inputs.forEach(input => {
+          // chrome.storage.local.get(["name"]).then((result) => {
+          //   console.log("Value is " + result["name"]);
+          // });
           if (checkFields(input, /name/i)) {
             if (checkFields(input, /first/i)) {
-              setValue(input, data.name.split(' ')[0]);
+              chrome.storage.local.get(["name"]).then((result) => {
+                setValue(input, result["name"].split(' ')[0]);
+              });
             } else if (checkFields(input, /last/i)) {
-              setValue(input, data.name.split(' ')[1]);
-            } else {setValue(input, data.name);}
+              chrome.storage.local.get(["name"]).then((result) => {
+                setValue(input, result["name"].split(' ')[1]);
+              });
+            } else {
+              chrome.storage.local.get(["name"]).then((result) => {
+              setValue(input, result["name"]);
+            });}
           } else if (checkFields(input, /mail/i)) {
-            setValue(input, data.mail);
+            chrome.storage.local.get(["email"]).then((result) => {
+              setValue(input, result["email"]);
+            });
           } else if (checkFields(input, /phone|tel/i)) {
-            setValue(input, data.phone);
+            chrome.storage.local.get(["phone"]).then((result) => {
+              setValue(input, result["phone"]);
+            });
           } else if (checkFields(input, /linkedin/i)) {
-            setValue(input, data.linkedin);
+            chrome.storage.local.get(["linkedin"]).then((result) => {
+              setValue(input, result["linkedin"]);
+            });
           } else if (checkFields(input, /github/i)) {
-            setValue(input, data.github);
+            chrome.storage.local.get(["github"]).then((result) => {
+              setValue(input, result["github"]);
+            });
           } else if (checkFields(input, /portfolio|Website/i)) {
-            setValue(input, data.portfolio);
+            chrome.storage.local.get(["portfolio"]).then((result) => {
+              setValue(input, result["portfolio"]);
+            });
           } else if (checkFields(input, /address|city/i)) {
-            setValue(input, data.address);
+            chrome.storage.local.get(["address"]).then((result) => {
+              setValue(input, result["address"]);
+            });
           } else if (checkFields(input, /desired|pay/i)) {
-            setValue(input, data.desiredPay);
+            chrome.storage.local.get(["desiredPay"]).then((result) => {
+              setValue(input, result["desiredPay"]);
+            });
           }
         });
       }, 1000);

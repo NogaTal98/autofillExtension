@@ -18,7 +18,7 @@
         "128": "images/icon-128.png"
       }
     },
-    "permissions": ["scripting", "activeTab"],
+    "permissions": ["scripting", "activeTab", "storage"],
     "web_accessible_resources": [
     {
       "resources": [ "data/data.json", "/data/CV.pdf" ],
