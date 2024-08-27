@@ -1,11 +1,7 @@
 const updateDataForm = document.getElementById('updateDataForm');
-
 updateDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const formData = new FormData(updateDataForm);
-
-    
     // update the local storage with the new data
     for (let key of formData) {
         console.log(key);
@@ -21,6 +17,10 @@ updateDataForm.addEventListener('submit', async (e) => {
             console.log("Value ", key[0], " is set to " + key[1]);
         });
         }
-        
     }
+});
+
+const openUpdateDataForm = document.getElementById('openUpdateDataForm');
+openUpdateDataForm.addEventListener('click', async () => {
+    updateDataForm.style.display = 'table';
 });

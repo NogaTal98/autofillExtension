@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   chrome.storage.local.get(["cv"]).then((result) => {
-    console.log(result["cv"]);
     if (result["cv"]) {
       const blob = dataURLtoBlob(result["cv"]);
       const dt = new DataTransfer();
@@ -84,7 +83,6 @@ autofill.addEventListener('click', async () => {
             }
 
             chrome.storage.local.get(["cv"]).then((result) => {
-              console.log(result["cv"]);
               if (result["cv"]) {
                 const blob = dataURLtoBlob(result["cv"]);
                 const dt = new DataTransfer();
