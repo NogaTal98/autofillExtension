@@ -29,6 +29,6 @@ form.addEventListener('submit', async (e) => {
 openForm.addEventListener('click', async () => {
     form.style.display = 'table';
     openForm.style.display = 'none';
-    document.body.style.width = '300px';
+    document.body.style.width = '400px';
     aoutofill.style.display = 'none';
 });
