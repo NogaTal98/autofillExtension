@@ -18,6 +18,7 @@ updateDataForm.addEventListener('submit', async (e) => {
         });
         }
     }
+    updateDataForm.style.display = 'none';
 });
 
 const openUpdateDataForm = document.getElementById('openUpdateDataForm');
