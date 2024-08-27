@@ -1,57 +1,61 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
   <body>
-    <button id="autofill">Fill Aplication Form</button>
+    <button id="autofill">AUTOFILL</button>
     <script src="background.js" ></script>
 
-    <button id="openUpdateDataForm">Update Your Data</button>
-        <form id="updateDataForm" style="display: none;">
-            <div id="formeField">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Name">
-            </div>
-            
-            <div id="formeField">
-                <label for="email">email:</label>
-                <input type="text" id="email" name="email" placeholder="Email">
-            </div>
+    <a id="openForm">Update Your Data</a>
 
-            <div id="formeField">
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" name="phone" placeholder="Phone">
-            </div>
+    <form id="form" style="display: none;">
+        <h1>Update Your Data</h1>
+        <div id="formeField">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name">
+        </div>
+        
+        <div id="formeField">
+            <label for="email">email:</label>
+            <input type="text" id="email" name="email" placeholder="Email">
+        </div>
 
-            <div id="formeField">            
-                <label for="linkedin">LinkedIn:</label>
-                <input type="text" id="linkedin" name="linkedin" placeholder="LinkedIn">
-            </div>
+        <div id="formeField">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" placeholder="Phone">
+        </div>
 
-            <div id="formeField">  
-                <label for="github">GitHub:</label>
-                <input type="text" id="github" name="github" placeholder="GitHub">
-            </div>
+        <div id="formeField">            
+            <label for="linkedin">LinkedIn:</label>
+            <input type="text" id="linkedin" name="linkedin" placeholder="LinkedIn">
+        </div>
 
-            <div id="formeField">  
-                <label for="portfolio">Portfolio:</label>
-                <input type="text" id="portfolio" name="portfolio" placeholder="Portfolio">
-            </div>
+        <div id="formeField">  
+            <label for="github">GitHub:</label>
+            <input type="text" id="github" name="github" placeholder="GitHub">
+        </div>
 
-            <div id="formeField">  
-                <label for="address">Adress:</label>
-                <input type="text" id="address" name="address" placeholder="Adress">
-            </div>
+        <div id="formeField">  
+            <label for="portfolio">Portfolio:</label>
+            <input type="text" id="portfolio" name="portfolio" placeholder="Portfolio">
+        </div>
 
-            <div id="formeField">  
-                <label for="desiredPay">Desired pay:</label>
-                <input type="text" id="desiredPay" name="desiredPay" placeholder="Desired Pay">
-            </div>
+        <div id="formeField">  
+            <label for="address">Adress:</label>
+            <input type="text" id="address" name="address" placeholder="Adress">
+        </div>
 
-            <div id="formeField">  
-                <label for="cv">CV:</label>
-                <input type="file" id="cv" name="cv" placeholder="cv">
-            </div>
+        <div id="formeField">  
+            <label for="desiredPay">Desired pay:</label>
+            <input type="text" id="desiredPay" name="desiredPay" placeholder="Desired Pay">
+        </div>
 
-            <button type="submit" id="updateDataButton">Submit</button>
-        </form>
+        <div id="formeField">  
+            <label for="cv">Resume:</label>
+            <input type="file" id="cv" name="cv" placeholder="cv">
+        </div>
+        <button type="submit" id="updateDataButton">Submit</button>
+    </form>
     <script src="updateData.js" ></script>
   </body>
 </html>

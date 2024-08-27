@@ -1,7 +1,10 @@
-const updateDataForm = document.getElementById('updateDataForm');
-updateDataForm.addEventListener('submit', async (e) => {
+const form = document.getElementById('form');
+const openForm = document.getElementById('openForm');
+const aoutofill = document.getElementById('autofill');
+
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(updateDataForm);
+    const formData = new FormData(form);
     // update the local storage with the new data
     for (let key of formData) {
         console.log(key);
@@ -18,9 +21,14 @@ updateDataForm.addEventListener('submit', async (e) => {
         });
         }
     }
+    form.style.display = 'none';
+    openForm.style.display = 'block';
+    window.location.reload();
 });
 
-const openUpdateDataForm = document.getElementById('openUpdateDataForm');
-openUpdateDataForm.addEventListener('click', async () => {
-    updateDataForm.style.display = 'table';
+openForm.addEventListener('click', async () => {
+    form.style.display = 'table';
+    openForm.style.display = 'none';
+    document.body.style.width = '400px';
+    aoutofill.style.display = 'none';
 });
