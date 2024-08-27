@@ -11,14 +11,15 @@ form.addEventListener('submit', async (e) => {
         if (key[0] == 'cv') {
             const reader = new FileReader();
             reader.onload = async (e) => {
-            chrome.storage.local.set({ cv: e.target.result });
+            chrome.storage.local.set({ cv: {
+                data: e.target.result,
+                name: key[1].name
+            } });
             };
             reader.readAsDataURL(key[1]);
         }
         else {
-            chrome.storage.local.set({ [key[0]] : key[1] }).then(() => {
-            console.log("Value ", key[0], " is set to " + key[1]);
-        });
+            chrome.storage.local.set({ [key[0]] : key[1] });
         }
     }
     form.style.display = 'none';
