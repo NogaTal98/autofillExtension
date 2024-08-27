@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   chrome.storage.local.get(["cv"]).then((result) => {
     if (result["cv"]) {
-      const blob = dataURLtoBlob(result["cv"]);
+      const blob = dataURLtoBlob(result["cv"].data);
       const dt = new DataTransfer();
-      dt.items.add(new File([blob], "CV.pdf"));
+      dt.items.add(new File([blob], result["cv"].name));
       const input = document.getElementById("cv");
       input.files = dt.files;
       const event = new Event("change", { bubbles: !0, });
@@ -84,9 +84,9 @@ autofill.addEventListener('click', async () => {
 
             chrome.storage.local.get(["cv"]).then((result) => {
               if (result["cv"]) {
-                const blob = dataURLtoBlob(result["cv"]);
+                const blob = dataURLtoBlob(result["cv"].data);
                 const dt = new DataTransfer();
-                dt.items.add(new File([blob], "CV.pdf"));
+                dt.items.add(new File([blob], result["cv"].name));
                 input.files = dt.files;
                 const event = new Event("change", { bubbles: !0, });
                 input.dispatchEvent(event);
