@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Job application autofill",
+    "name": "Autofill",
     "description": "Autofill job application forms with your personal data",
-    "version": "1.0",
+    "version": "1.0.0.0",
     "icons": {
       "16": "images/icon-16.png",
       "32": "images/icon-32.png",
